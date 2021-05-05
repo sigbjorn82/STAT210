@@ -1,0 +1,40 @@
+\documentclass[12pt]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[customcolors]{hf-tikz}
+\usepackage[total={215mm,285mm},top=2cm,bottom=3cm,headsep=10pt,
+    vmargin=2.5cm,
+    outermargin=2.5cm,
+    innermargin=2.5cm,
+    marginparwidth=1cm,
+    marginparsep=10pt]{geometry}
+
+
+\setlength{\parindent}{4em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.5}
+
+\setmainfont{Times New Roman}
+\title{Mandatory 3 - STAT210}
+\author{Sigbjørn Fjelland og Endre Moen}
+\date{09-May-2021}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section*{Oppgave 1}
+\begin{enumerate}[label=(\alph*)]
+\item
+
+\end{enumerate}
+
+\end{document}
