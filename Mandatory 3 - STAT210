@@ -34,6 +34,32 @@
 \section*{Oppgave 1}
 \begin{enumerate}[label=(\alph*)]
 \item
+\item 
+Regularity conditions of thm 10.1.12:\newline
+
+$A_1$: $X_1,..,X_n$ is iid. by information given.\newline
+$A_2$: 
+\begin{align*}
+    x&=1\\
+    f(x|\theta)&=\frac{\theta}{X^{\theta+1}}\\
+    f(1|\theta)&=\frac{\theta}{1^{\theta+1}}=\theta\\
+    f(1|\theta')&=\frac{\theta'}{1^{\theta'+1}}=\theta'\\
+    \Rightarrow&\quad f(x|\theta) \neq f(x|\theta')\quad\text{when}\quad\theta\neq\theta'\\
+    &\longrightarrow\quad\text{hence the parameter is "identifiable"}
+\end{align*}\newline
+$A_3$: The dencity have common support and a product of differentiable functions is also differentiablel.\newline
+$A_4$: since $\theta>0$ and $x>1$\newline
+\quad $x\in(1,+\infty)$ and $\theta\in(0,+\infty)$\newline then $\theta_0\in(\frac{\theta}{c},+\infty)$ for some $c>0$\newline
+$A_5$:
+\begin{align*}
+    f(x|\theta)&=\frac{\theta}{X^{\theta+1}}\\\\
+    \frac{\partial f}{\partial \theta}&=x^{-(\theta+1)}+\theta\cdot(\theta+1)\cdot x^{-(\theta+1)}\\
+    &\quad\underline{=x^{-(\theta+1)}+\theta^{2} x^{-(\theta+2)}-\theta\cdot x^{-(\theta+2)}}\\
+    \frac{\partial^2 f}{\partial \theta^2}&=x^{-(\theta+2)}+2\theta x^{-(\theta+2)}-\theta^2 x^{-(\theta+3)}+x^{-(\theta+2)}+\theta x^{-(\theta+3)}\\
+    &\quad\underline{=2\theta x^{-(\theta+2)}+\theta x^{-(\theta+3)}-\theta^2 x^{-(\theta+3)}}\\
+    \frac{\partial^3 f}{\partial \theta^3}&=2 x^{-(\theta+2)} - 2\theta x^{-(\theta+3)}+x^{-(\theta+3)}+\theta x^{-(\theta+4)}+2\theta x^{-(\theta+3)}+\theta^2 x^{-(\theta+4)}\\
+    &\quad\underline{=2 x^{-(\theta+2)}+x^{-(\theta+3)}+\theta x^{-(\theta+4)}+\theta^2 x^{-(\theta+4)}}
+\end{align*}
 
 \end{enumerate}
 
