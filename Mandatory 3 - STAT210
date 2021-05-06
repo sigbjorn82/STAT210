@@ -30,12 +30,28 @@
 \begin{document}
 
 \maketitle
-
+\section*{Oppgave 0}
+\begin{enumerate}[label=(\alph*)]
+\item
+\end{enumerate}
 \section*{Oppgave 1}
 \begin{enumerate}[label=(\alph*)]
 \item
+To derive the $MLE$ from $f(x|\theta)$:
+\begin{align*}
+    f(X|\theta)&=\frac{\theta}{X^{\theta+1}}\\\\
+    L(\theta|x)&=\prod_{i=1}^n f(x|\theta)=\prod_{i=1}^n\left(\frac{\theta}{X_i^{\theta+1}}\right)\\
+    &=\theta^n \prod_{i=1}^n \left(\frac{1}{X^{\theta+1}}\right)\\
+    \Rightarrow l(\theta|x)&=n\cdot ln(\theta)-(\theta+1)\sum_{i=1}^n ln(X_i)\\
+    &\boxed{\text{MLE at maximum   $l(\theta|X_i)$}}\\
+    \frac{\partial l}{\partial \theta}&=\frac{n}{\theta}-\sum_{i=1}^n ln(X_i)=0\\
+    \Rightarrow \frac{n}{\theta}&=\sum_{i=1}^n ln(X_i)\\
+    \Rightarrow \hat{\theta}&=\frac{n}{\sum_{i=1}^n ln(X_i)}\longrightarrow \underline{MLE}\\
+\end{align*}
+
 \item 
-Regularity conditions of thm 10.1.12:\newline
+Regularity conditions of thm 10.1.12:
+\newline
 
 $A_1$: $X_1,..,X_n$ is iid. by information given.\newline
 $A_2$: 
@@ -52,14 +68,23 @@ $A_4$: since $\theta>0$ and $x>1$\newline
 \quad $x\in(1,+\infty)$ and $\theta\in(0,+\infty)$\newline then $\theta_0\in(\frac{\theta}{c},+\infty)$ for some $c>0$\newline
 $A_5$:
 \begin{align*}
-    f(x|\theta)&=\frac{\theta}{X^{\theta+1}}\\\\
-    \frac{\partial f}{\partial \theta}&=x^{-(\theta+1)}+\theta\cdot(\theta+1)\cdot x^{-(\theta+1)}\\
-    &\quad\underline{=x^{-(\theta+1)}+\theta^{2} x^{-(\theta+2)}-\theta\cdot x^{-(\theta+2)}}\\
-    \frac{\partial^2 f}{\partial \theta^2}&=x^{-(\theta+2)}+2\theta x^{-(\theta+2)}-\theta^2 x^{-(\theta+3)}+x^{-(\theta+2)}+\theta x^{-(\theta+3)}\\
-    &\quad\underline{=2\theta x^{-(\theta+2)}+\theta x^{-(\theta+3)}-\theta^2 x^{-(\theta+3)}}\\
-    \frac{\partial^3 f}{\partial \theta^3}&=2 x^{-(\theta+2)} - 2\theta x^{-(\theta+3)}+x^{-(\theta+3)}+\theta x^{-(\theta+4)}+2\theta x^{-(\theta+3)}+\theta^2 x^{-(\theta+4)}\\
-    &\quad\underline{=2 x^{-(\theta+2)}+x^{-(\theta+3)}+\theta x^{-(\theta+4)}+\theta^2 x^{-(\theta+4)}}
+    f(x|\theta)&=\frac{\theta}{x^{\theta+1}}=\theta\cdot x^{-(\theta+1)}\\\\
+    \frac{\partial f}{\partial \theta}&=\frac{1\cdot x^{\theta+1}-\theta x^{\theta+1} ln(x)}{(x^{(\theta+1)})^2}\\\
+    &\quad\underline{=x^{-(\theta+1)}(1-\theta ln(x))}\\\\
+    \frac{\partial^2 f}{\partial \theta^2}&=(-ln(x) x^{-(\theta+1)})+(-ln(x)x^{-(\theta+1)}(1-ln(x)))\\
+    &\quad=x^{-(\theta+1)}[-(1-\theta ln(x))ln(x)-ln(x)]\\\
+    &\quad\underline{=x^{-(\theta+1)}ln(x)[\theta ln(x)-2]}\\\\
+    \frac{\partial^3 f}{\partial \theta^3}&=ln(x)[(-ln(x)x^{-(\theta+1)}(\theta ln(x)-2))+(ln(x)x^{-(\theta+1)}]\\\
+    &\quad\underline{=-x^{-(\theta+1)}(ln(x))^2[\theta ln(x)-3]}\\
 \end{align*}
+To check $\frac{\partial^3 f}{\partial \theta^3}$ for continouency:
+\begin{align*}
+    \lim_{\theta\to \infty}&(-x^{-(\theta+1)}(ln(x))^2[\theta ln(x)-3])=\lim_{\theta\to \infty}-\frac{\theta ln^3(x)-3ln^2(x)}{x^{(\theta+1)}}=\left[\frac{\infty}{\infty}\right]\\\\
+    \xRightarrow{L'H}&=-ln^2(x)\cdot\lim_{\theta\to \infty}\frac{ln(x)}{ln(x)x^{\theta+1}}\\
+    &=-ln^2(x)\cdot\lim_{\theta\to \infty}\frac{1}{x^{\theta+1}}\longrightarrow \underline{0}
+\end{align*}
+hence $\frac{\partial^3 f}{\partial \theta^3}$ is continous
+
 
 \end{enumerate}
 
