@@ -85,6 +85,15 @@ To check $\frac{\partial^3 f}{\partial \theta^3}$ for continouency:
 \end{align*}
 hence $\frac{\partial^3 f}{\partial \theta^3}$ is continous
 
+$A_6$: 
+\begin{align*}
+    \left\lvert\frac{\partial^3}{\partial \theta^3}ln(f(x|\theta))\right\lvert \leq M(x)\\
+    &\Rightarrow \frac{\partial^3}{\partial \theta^3}log\left(\frac{\theta}{x^{\theta+1}}\right)=\frac{\partial^2}{\partial \theta^2}\left(\frac{x^{\theta+1}}{\theta}-\frac{ln(x)}{x^{\theta+1}}\right)\\
+    &=\frac{\partial^2}{\partial \theta^2}\left(\frac{1}{\theta}-ln(x)\right)=\frac{\partial}{\partial \theta}\left(\frac{1}{\theta^2}\right)\\
+    &\underline{=\frac{2}{\theta^3}}\\
+    \left\lvert\frac{2}{\theta^3}\right\lvert \leq M(x)
+\end{align*}
+
 
 \end{enumerate}
 
