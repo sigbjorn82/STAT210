@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{enumitem}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{mathtools}
 \usepackage[customcolors]{hf-tikz}
 \usepackage[total={215mm,285mm},top=2cm,bottom=3cm,headsep=10pt,
@@ -49,6 +50,25 @@ To derive the $MLE$ from $f(x|\theta)$:
     \Rightarrow \hat{\theta}&=\frac{n}{\sum_{i=1}^n ln(X_i)}\longrightarrow \underline{MLE}\\
 \end{align*}
 
+Consitency:
+\begin{align*}
+    M_{log(x_i)}(t)&={{\mathbb E}\left[ e^{log(X)t} \right]}={{\mathbb E}\left[ X^{t} \right]}= \int_{1}^{\infty} X^t\cdot f(x)dx=\int_{1}^{\infty} X^t\cdot \left(\frac{\theta}{X^{\theta+1}}\right)dx\\\\
+    &=\theta \int_{1}^{\infty}\left(\frac{X^t}{X^{\theta+1}}\right)dx=\theta \int_{1}^{\infty} X^{t-(\theta+1)}dx=\theta\left[\frac{1}{t-\theta}\cdot X^{t-\theta} \right]_1^\infty\\\\
+    &=\underline{\frac{\theta}{t-\theta}}=\underline{\left(1-\frac{t}{\theta}\right)}^{-1}\\\\
+    M_{\frac{1}{n} \sum_{i=1}^{n} log(x_i)}(t)&={{\mathbb E}\left[exp\left(\frac{t}{n}\cdot \sum_{i=1}^{n} log(X_i)\right) \right]}={{\mathbb E}\left[\prod_{i=1}^n exp\left(\frac{t}{n}\cdot log(X_i)\right) \right]}\\\\
+    &=\prod_{i=1}^n {{\mathbb E}\left[exp\left(\frac{t}{n}\cdot log(X_i)\right) \right]}=\prod_{i=1}^n M_{log(x_i)}(\frac{t}{n})\\\\
+    &=\left(1-\frac{t}{n\theta}\right)^{-n}\\\\
+    M'_{log(x_i)}(t)&=\frac{n}{n\theta}\cdot\left(1-\frac{t}{n\theta}\right)^{-(n+1)}=\frac{1}{\theta}\cdot\left(1-\frac{t}{n\theta}\right)^{-(n+1)}\\\\
+    M'_{log(x_i)}(0)&={{\mathbb E}}\left(X\right)=\frac{1}{\theta}\cdot\left(1-\frac{0}{n\theta}\right)^{-(n+1)}=\frac{1}{\theta}\cdot(1)^{-(n+1)}\\
+    &=\underline{\frac{1}{\theta}}\\\\
+    M''_{log(x_i)}(t)&=\frac{1}{\theta^2}\cdot\left(1-\frac{t}{n\theta}\right)^{-(n+2)}\\\\
+    M''_{log(x_i)}(0)&={{\mathbb E}}\left(X^2\right)=\frac{1}{\theta^2}\cdot\left(1-\frac{0}{n\theta}\right)^{-(n+2)}\\
+    &=\underline{\frac{1}{\theta^2}}\\
+    Var(X)&={{\mathbb E}}\left(X^2\right)+\left({{\mathbb E}}\left(X\right)\right)^2=\frac{1}{\theta^2}+\left(\frac{1}{\theta}\right)^2=\underline{\frac{2}{\theta^2}}
+\end{align*}
+
+Apply continous mapping theorem (5.5.7):
+
 \item 
 Regularity conditions of thm 10.1.12:
 \newline
@@ -83,8 +103,14 @@ To check $\frac{\partial^3 f}{\partial \theta^3}$ for continouency:
     \xRightarrow{L'H}&=-ln^2(x)\cdot\lim_{\theta\to \infty}\frac{ln(x)}{ln(x)x^{\theta+1}}\\
     &=-ln^2(x)\cdot\lim_{\theta\to \infty}\frac{1}{x^{\theta+1}}\longrightarrow \underline{0}
 \end{align*}
-hence $\frac{\partial^3 f}{\partial \theta^3}$ is continous
-
+hence $\frac{\partial^3 f}{\partial \theta^3}$ is continous.
+\newline
+\begin{align*}
+    &\frac{\partial^3 f}{\partial \theta^3}\int f(x|\theta)dx\\\\
+    =&\frac{\partial^3 f}{\partial \theta^3}\int \left(\frac{\theta}{X^{\theta+1}}\right)dx = \frac{\partial^3 f}{\partial \theta^3}\theta\cdot\int\left(\frac{1}{X^{\theta+1}}\right)dx=\frac{\partial^3 f}{\partial \theta^3}\left(\frac{-X^{-\theta}\cdot \theta}{\theta}\right)\\
+    =&\frac{\partial^3 f}{\partial \theta^3}(-X^{-\theta})=\frac{\partial^2 f}{\partial \theta^2}(X^{-\theta}log(x))=\frac{\partial f}{\partial \theta}(-X^{-\theta}log^2(x))\\
+    =&\underline{X^{-\theta}log^3(x)}
+\end{align*}
 $A_6$: 
 \begin{align*}
     \left\lvert\frac{\partial^3}{\partial \theta^3}ln(f(x|\theta))\right\lvert \leq M(x)\\
