@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{mathtools}
+\newcommand{\R}{\mathbb{R}}
 \usepackage[customcolors]{hf-tikz}
 \usepackage[total={215mm,285mm},top=2cm,bottom=3cm,headsep=10pt,
     vmargin=2.5cm,
@@ -32,8 +33,56 @@
 
 \maketitle
 \section*{Oppgave 0}
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}
+\item\quad A random Variable X is a function from a sample space S to $\R$:
+\begin{align*}
+    X:\quad S\rightarrow \R
+\end{align*}
+
 \item
+$Statistics T:$
+\newline
+\quad $Y=T(X_1,...,X_n)$ is a statistic $Y\sim\text{"Sampling distribution"}$
+\newline
+where $X_1,...,X_n$ is a random sample
+\newline
+T-real variabel or vector variabel
+\begin{align*}
+    T:\underset{\bar{}}{X}\rightarrow \R \text{or $\underset{\bar{}}{X}$}
+\end{align*}
+e.g
+\newline
+\begin{align*}
+    \Bar{X}=\frac{1}{n}\sum_{i=1}^n x_i \longrightarrow &\text{is a statistic},\\\\
+    g(X_1)=\frac{X_1-\mu}{\sigma}\longrightarrow &\text{is not a statistic}\\
+   &\text{if $\sigma$ and $\mu$ is unknown. A statistic cannot }\\
+   &\text{depend on unknown variables}
+\end{align*}
+\newpage
+T is a statistic if the intent is to do inference. eg. $\Bar(X)$ has the minimal sufficient statistic $(\Sigma x_i,n)$ while median has MSS $\underset{\bar{}}{X}$.
+\newline
+\item
+An estimator $\theta$ is a function mapping sample spaceto sample estimators
+\begin{align*}
+    \hat{\theta}:\quad& S\longrightarrow V,\quad\hat{\theta}(x)\\
+    &x\longmapsto \hat{\theta}(x)\in \R
+\end{align*}
+
+$\hat{\theta}$ is an observation or unbiased population parameter of a Random variable.\newline
+
+\underline{1 vs 3}\newline
+An estimator $\xRightarrow{\text{is a}}$ Random variable because it is a function of a RV, wich again is a RV.\newline 
+RV $\xRightarrow{\text{is a}}$estimator, because $\hat{\theta}$ is a obeservation on an RV.\newline
+\underline{2 vs 3}\newline
+\begin{itemize}
+  \item Statistics - is a function of a sample
+  \item Estimator - is a function of a sample related to a quantity, e.g $\Bar{X}$, of the distribution
+  \item Statistics $\xRightarrow{\text{is NOT a}}$ estimator
+  \item Estimator $\xRightarrow{\text{is a}}$ statistics of a quantity/parameter.
+  \item Bias and variance exists for an estimator
+  \item Bias and variance does not exists for an estimator
+\end{itemize}
+\quad One Statistics $\xrightarrow{\text{many}}$ estimators
 \end{enumerate}
 \section*{Oppgave 1}
 \begin{enumerate}[label=(\alph*)]
@@ -58,17 +107,25 @@ Consitency:
     M_{\frac{1}{n} \sum_{i=1}^{n} log(x_i)}(t)&={{\mathbb E}\left[exp\left(\frac{t}{n}\cdot \sum_{i=1}^{n} log(X_i)\right) \right]}={{\mathbb E}\left[\prod_{i=1}^n exp\left(\frac{t}{n}\cdot log(X_i)\right) \right]}\\\\
     &=\prod_{i=1}^n {{\mathbb E}\left[exp\left(\frac{t}{n}\cdot log(X_i)\right) \right]}=\prod_{i=1}^n M_{log(x_i)}(\frac{t}{n})\\\\
     &=\left(1-\frac{t}{n\theta}\right)^{-n}\\\\
-    M'_{log(x_i)}(t)&=\frac{n}{n\theta}\cdot\left(1-\frac{t}{n\theta}\right)^{-(n+1)}=\frac{1}{\theta}\cdot\left(1-\frac{t}{n\theta}\right)^{-(n+1)}\\\\
-    M'_{log(x_i)}(0)&={{\mathbb E}}\left(X\right)=\frac{1}{\theta}\cdot\left(1-\frac{0}{n\theta}\right)^{-(n+1)}=\frac{1}{\theta}\cdot(1)^{-(n+1)}\\
+    M'_{log(x_i)}(t)&=\frac{n}{n\theta}\cdot\left(1-\frac{t}{n\theta}\right)^{-1}=\frac{1}{\theta}\cdot\left(1-\frac{t}{n\theta}\right)^{-1}\\\\
+    M'_{log(x_i)}(0)&={{\mathbb E}}\left(log(X_i)\right)=\frac{1}{\theta}\cdot\left(1-\frac{0}{n\theta}\right)^{-1}=\frac{1}{\theta}\cdot(1)^{-1}\\
     &=\underline{\frac{1}{\theta}}\\\\
-    M''_{log(x_i)}(t)&=\frac{1}{\theta^2}\cdot\left(1-\frac{t}{n\theta}\right)^{-(n+2)}\\\\
-    M''_{log(x_i)}(0)&={{\mathbb E}}\left(X^2\right)=\frac{1}{\theta^2}\cdot\left(1-\frac{0}{n\theta}\right)^{-(n+2)}\\
+    M''_{log(x_i)}(t)&=\frac{1}{\theta^2}\cdot\left(1-\frac{t}{n\theta}\right)^{-1}\\\\
+    M''_{log(x_i)}(0)&={{\mathbb E}}\left((log(X_i))^2\right)=\frac{1}{\theta^2}\cdot\left(1-\frac{0}{n\theta}\right)^{-1}\\
     &=\underline{\frac{1}{\theta^2}}\\
-    Var(X)&={{\mathbb E}}\left(X^2\right)+\left({{\mathbb E}}\left(X\right)\right)^2=\frac{1}{\theta^2}+\left(\frac{1}{\theta}\right)^2=\underline{\frac{2}{\theta^2}}
+    Var(X)&={{\mathbb E}}\left(log^2(X_i)\right)+\left({{\mathbb E}}\left(log(X_i)\right)\right)^2=\frac{1}{\theta^2}+\left(\frac{1}{\theta}\right)^2=\underline{\frac{2}{\theta^2}}
 \end{align*}
 
-Apply continous mapping theorem (5.5.7):
-
+We then denote the invers of the estimator:
+\begin{align*}
+    Y_n=\frac{1}{n}\sum_{i=1}^n log(X_i)
+\end{align*}
+and since there exist an ${{\mathbb E}}\left(log(X_i)\right)$ we have that
+\begin{align*}
+    \frac{1}{n}\sum_{i=1}^n log(X_i)\xrightarrow{p} {{\mathbb E}}_{\theta}\left((log(X_i))\right) &\iff Y_n \xrightarrow{p}\frac{1}{\theta}\\\\
+    \Rightarrow \frac{1}{Y_n} \xrightarrow{p} \frac{1}{\frac{1}{\theta}}&\iff \frac{n}{\sum_{i=1}^n log(X_i)} \xrightarrow{p}\theta
+\end{align*}
+and therby we can state that the estimator $\hat{\theta}$ is consistent.
 \item 
 Regularity conditions of thm 10.1.12:
 \newline
@@ -119,8 +176,64 @@ $A_6$:
     &\underline{=\frac{2}{\theta^3}}\\
     \left\lvert\frac{2}{\theta^3}\right\lvert \leq M(x)
 \end{align*}
+\newline
+By confirming the regularities weh have that the estimator is consistent and efficient
+\newpage
+\item
+Using MoM to estimate $\theta$ for the pareto distribution:
+\begin{align*}
+    f(x|\theta)&=\frac{\theta}{x^{\theta+1}}\\\\
+    \mu&=\frac{\theta}{\theta-1}&\text{(mean)}\\\\
+    \theta(\mu)&=\frac{\mu}{\mu-1}&\text{(solving $\theta$ as a function of $\mu$)}\\\\
+    \Bar{X}&=\frac{1}{n}\sum_{i=1}^n x_i &\text{(Estimating $\mu$ from sample)}\\\\
+    \Bar{\theta}&=\frac{\Bar{X}}{\Bar{X}-1}&\text{(Substituting $\Bar{X}$ for $\mu$ which yields the estimator\Bar{\theta})}\\\\
+\end{align*}
+This estimator can in the same way be transformed back and we can use thm 5.5.2:
+\begin{align*}
+    \Bar{X}&=\frac{\Bar{\theta}}{\Bar{\theta}-1}=\frac{1}{n}\sum_{i=1}^n x_i\\\\
+    \lim_{n\to \infty}&P(|\Bar{X}-\mu|<\epsilon)=1\\\\
+    &P(|\Bar{X}-\mu|\geq\epsilon)=P((\Bar{X}-\mu)^2\geq\epsilon^2)\leq\frac{{{\mathbb E}\left[ \Bar{X}-\mu\right]}}{\epsilon^2}\\
+    =&\frac{Var(\Bar{X})}{\epsilon^2}=\frac{\sigma^2}{n\epsilon^2}\\\\
+    \Rightarrow\lim_{n\to \infty}&P(|\Bar{X}-\mu|<\epsilon)=\lim_{n\to \infty}\quad 1-P(|\Bar{X}-\mu|\geq\epsilon)\\
+    =&1-\lim_{n\to \infty}\frac{\sigma^2}{n\epsilon^2}=1&\text{(as $n\rightarrow\infty$)}
+\end{align*}\newpage
 
-
+\begin{align*}
+  &\text{since}\quad\Bar{X}\xrightarrow{p}\mu\quad\\\\
+  &\text{by thm 5.5.4}\Rightarrow\quad\theta(\Bar{X})\xrightarrow{p}\theta(\mu)\\\\
+  &\text{hence}\quad\Bar{\theta}\xrightarrow{p}\theta
+\end{align*}
+\item
 \end{enumerate}
+\newpage
 
+\section*{Oppgave 4}
+\begin{enumerate}[label=(\alph*)]
+\item
+\quad This becomes somewhat random since there are several important topics, so lets linger on convergence limits and theorems, sufficience statistics and Consitancy of Estimators.
+\newline
+
+\quad The principle of convergence of a random variable is that as the sample sice $(n)$ increase the parameters  or we take infrence on moves towards some true value. A well known parameter is the mean $\mu$, which is often estimated with the avrage $\Bar{X}$. This estimation would give no meaning if it was not consistent and tendet to approach the value its estimating. Hence we have the concepts of convergance. There are three types of convergance mentioned in this course. Convergance in probability, convergance in distribution and Almost shurley convergance. The almost shure convergance is the strongest but also hardest to prove, and is in the outer scope of this cource. We will focus on convergance in distribution and probabilitie.
+\newline
+Convergance in probabilitie $X_i\xrightarrow{p}X$ is defined as 
+\newline
+$\lim_{n\to \infty}P(|X_n-X|<\epsilon)=1\iff P(|X_n-X|\geq \epsilon)=0$ and is used to prove the above mentioned example with sample mean ($\Bar{X}\xrightarrow{p}\mu$) as proven in Thm 5.5.2 Weak Law of large numbers. The strong law of large numbers is confusingly similar, although harder to handle $\lim_{n\to \infty}P(\lim_{n\to \infty}|X_n-X|<\epsilon)=1$ and is known as convergance almost surley.
+\newline
+Convergance in distribution is when the cdf of the sample approaches the true cdf \newline
+$\lim_{n\to \infty}F_{X_n}(X)=F_{X_n}(X)$. Also if the distribution converges in probability it also converges in distribution (thm 5.5.12).
+\newline
+
+\quad When making infrence on an unknown parameter lets denote it $\theta$, wich is depending on a sample $X_1,...,X_n$ and a sample statistic $T(X)$ then the infrence shoud be the same weather we draw $X_1$ or $X_{(n)}$ if the statistic is sufficient enough to contain all information about $\theta$.
+\newline
+To show that a statistic is sufficient is most commonly done trough the Factorization Theorem wich states $f(x|\theta)=g(T(x|\theta))\cdot h(x)$. The core of this consept is to re-write the function to pull out a suitable $h(x)$ and $g(t(x|\theta)$. In extention to the principle of sufficient statistics comes the minimum sufficient statistics since there can be several sufficient statistics $S$ such that we have a function of several sufficient statistics $T(X_1,...,X_n)=g(S(X_1,...,X_n))$ hence $T(X)$ is a MSS. 
+\newline 
+This is as I see it two ways to apply sufficience statistics (correct me if Im wrong as I now am on thin ice). Either to check if the sample contains enogh information to make an inference, or to reduce the amounth of data needed to obtain enough information about a parameter.
+\newline
+\quad Finaly I wasnt to comment on consistency of estimators, particularly MLE wich points back towards the convergance in probability and to the regularity conditions, a procedure used earlier in this mandatory to prove its consistency and efficiency.
+\newpage
+\item
+\quad In a followup course I would like to look up the topic we more or less skipped, wich is baysian statistics - estimator and hypthese test. This since it in contrast to much of statistics also accept some degree of previous experience and/or belief. In contrast to other infrence the baysian infrence update the probability for a hypothesis instead of rejecting/accepting it. For the consepts I belive they both have their fields of application and its pros and cons.\newline
+
+\quad To examplify, in a book about baceball  by Michael Lewis (later filmed as the movie money ball), they used a statistical approach to scouting players by rating the players in a neutral score of abilities and evaluate them sepratly. This was clearly the typical way of conduct hypothese tests. And by removing all bias and subtile intuition which could polute the disicion and it gave success, but they stil tended to loose some severe talents. Thats the one an good old agent could catch by intuition which the sampled rating could miss on a bad day. Baysian statistics brings an element of intuition in to the statistics.
+\end{enumerate}
 \end{document}
